@@ -68,7 +68,6 @@ void main()
 		/******* JUST FOR EREZ DEBUGGING ******/
 		// MAKE LATER A FUNCTION THAT CHECK IF THE SRC INDEXES ARE EMPTY
 		int r = gameBoard->_chessBoard[srcY][srcX]->isValidMove(msgFromGraphics, gameBoard, gameBoard->getPlayerTurn());
-
 		if (r == 0 || r == 1 || r == 8)
 		{
 			gameBoard->move(msgFromGraphics);

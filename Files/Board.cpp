@@ -10,6 +10,11 @@ enum BlackTypes { bROOK = 'r', bKNIGHT = 'n', bBISHOP = 'b', bQUEEN = 'q', bKING
 using std::string;
 using std::pow;
 
+/*
+The constructor for the board
+input: none
+output: none
+*/
 Board::Board()
 {
     // all the private variables
@@ -33,7 +38,11 @@ Board::Board()
     this->_chessBoard[7][4] = new King(bKING, "e1");
 }
 
-
+/*
+The destructor for the board
+input: none
+output: none
+*/
 Board::~Board()
 {
     int i = 0, j = 0;
@@ -46,6 +55,11 @@ Board::~Board()
     }
 }
 
+/*
+The function returns the board as a string
+input: none
+output: string
+*/
 string Board::getBoard() const
 {
     string boardString = "";
@@ -67,7 +81,11 @@ string Board::getBoard() const
     return boardString;
 }
 
-
+/*
+The function moves the piece on the board
+input: coords - string
+output: 0 - the move is valid
+*/
 int Board::move(std::string coords)
 {
     string newPos = "";
@@ -87,23 +105,40 @@ int Board::move(std::string coords)
     return 0;
 }
 
+/*
+The function changes the turn of the player
+input: none
+output: none
+*/
 void Board::changeTurn()
 {
     this->_PlayerTurn = !(this->_PlayerTurn);
 }
 
+/*
+The function returns the turn of the player
+input: none
+output: bool
+*/
 bool Board::getPlayerTurn() const
 {
     return this->_PlayerTurn;
 }
 
-void Board::updateKingCoords(const std::string& kingCoords, bool turn) {
+/*
+The function update the opposite team king coords after a move
+input: kingCoords - string, turn - bool
+output: none
+*/
+void Board::updateKingCoords(const std::string& kingCoords, bool turn) 
+{
 	int i = 0, j = 0;
+	// running over the board
     for (i = 0; i < BOARDSIZE; i++) 
     {
         for (j = 0; j < BOARDSIZE; j++) 
         {
-            if (this->_chessBoard[i][j] != nullptr) 
+			if (this->_chessBoard[i][j] != nullptr) // checking if its not a blank space
             {
                 // Updating only the opposite team king
                 if (turn && islower(this->_chessBoard[i][j]->getSymbol())) 

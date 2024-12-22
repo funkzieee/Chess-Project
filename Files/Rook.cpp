@@ -53,23 +53,23 @@ int Rook::isValidMove(const string& coords, Board* board, bool turn)
     // Check path is clear
     if (srcX == dstX) // Vertical move
     {
-        step = (dstY > srcY) ? 1 : -1;
+        step = (dstY > srcY) ? 1 : -1; // here we checking the direction of the move
         for (i = srcY + step; i != dstY; i += step)
         { 
-            if (board->_chessBoard[i][srcX] != nullptr)
+            if (board->_chessBoard[i][srcX] != nullptr) // Check if the current block is blocked
             {
-                return 6;
+                return 6; // if so returing 6
             }
         }
     }
     else if (srcY == dstY) // Horizontal move
     {
-        step = (dstX > srcX) ? 1 : -1;
+        step = (dstX > srcX) ? 1 : -1; // here we checking the direction of the move
         for (i = srcX + step; i != dstX; i += step)
         {
-            if (board->_chessBoard[srcY][i] != nullptr)
+            if (board->_chessBoard[srcY][i] != nullptr) // Check if the current block is blocked
             {
-                return 6;
+                return 6; // if so returing 6
             }
         }
     }
