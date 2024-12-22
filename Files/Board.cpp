@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "Rook.h"
 #include "King.h"
+#include "Bishop.h"
 #include <cmath>
 #include <string>
 
@@ -31,10 +32,14 @@ Board::Board()
     // White side
 	this->_chessBoard[0][0] = new Rook(wROOK, "e8");
     this->_chessBoard[0][7] = new Rook(wROOK, "e8");
+    this->_chessBoard[0][2] = new Bishop(wBISHOP, "e8");
+    this->_chessBoard[0][5] = new Bishop(wBISHOP, "e8");
     this->_chessBoard[0][4] = new King(wKING, "e8");
     //Black side
     this->_chessBoard[7][0] = new Rook(bROOK, "e1");
     this->_chessBoard[7][7] = new Rook(bROOK, "e1");
+    this->_chessBoard[7][2] = new Bishop(bBISHOP, "e1");
+    this->_chessBoard[7][5] = new Bishop(bBISHOP, "e1");
     this->_chessBoard[7][4] = new King(bKING, "e1");
 }
 
