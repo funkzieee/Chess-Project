@@ -44,10 +44,10 @@
     <ClInclude Include="..\Files\King.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Files\Pipe.h">
+    <ClInclude Include="..\Files\Rook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Files\Rook.h">
+    <ClInclude Include="..\Files\Pipe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Files\stdafx.h">

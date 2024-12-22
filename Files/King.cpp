@@ -8,10 +8,6 @@ King::King(char symbol, string kingCoords)
 {
 }
 
-//King::~King()
-//{
-//}
-
 int King::isValidMove(const string& coords, Board* board, bool turn)
 {
     bool inCheck = false;
@@ -37,7 +33,7 @@ int King::isValidMove(const string& coords, Board* board, bool turn)
     }
 
     // Check if destination has a piece of the same color (code 3)
-    if (board->_chessBoard[dstY][dstX] != nullptr && (board->_chessBoard[dstY][dstX]->getSymbol() == this->getSymbol()))
+    if (board->_chessBoard[dstY][dstX] != nullptr && isupper(board->_chessBoard[srcY][srcX]->getSymbol()) == isupper(board->_chessBoard[dstY][dstX]->getSymbol()))
     {
         return 3;
     }

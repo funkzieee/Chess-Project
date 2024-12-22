@@ -13,10 +13,6 @@ Rook::Rook(char symbol, string kingCoords)
 {
 }
 
-//Rook::~Rook()
-//{
-//}
-
 /*
 The function checks if the rook move is valid based on the coords it gets
 input: coords - string, board - ChessPiece* [][] (2d array)
@@ -25,7 +21,7 @@ output: true (for valid move), false (for invalid move)
 int Rook::isValidMove(const string& coords, Board* board, bool turn)
 {
 	bool isCheck = false;
-    // Note: Codes 1 (check), 4 (self-check), and 8 (checkmate) add later
+    // 4 (self-check), and 8 (checkmate) add later
     int i = 0, step = 0;
     // getting the indexes to check on the board
     int srcX = coords[0] - 'a', srcY = coords[1] - '1';
@@ -49,7 +45,7 @@ int Rook::isValidMove(const string& coords, Board* board, bool turn)
     }
 
     // Check if destination has a piece of the same color (code 3)
-    if (board->_chessBoard[srcY][srcX] != nullptr && (board->_chessBoard[srcY][srcX]->getSymbol() == this->getSymbol()))
+    if (board->_chessBoard[dstY][dstX] != nullptr && isupper(board->_chessBoard[srcY][srcX]->getSymbol()) == isupper(board->_chessBoard[dstY][dstX]->getSymbol()))
     {
         return 3;
     }
