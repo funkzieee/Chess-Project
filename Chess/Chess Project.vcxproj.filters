@@ -15,45 +15,45 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Checkmate-Repo\ChessProject\ChessPiece.cpp">
+    <ClCompile Include="..\Files\Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Checkmate-Repo\ChessProject\King.cpp">
+    <ClCompile Include="..\Files\ChessPiece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Checkmate-Repo\ChessProject\Rook.cpp">
+    <ClCompile Include="..\Files\King.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Checkmate-Repo\ChessProject\Source.cpp">
+    <ClCompile Include="..\Files\Rook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Checkmate-Repo\ChessProject\stdafx.cpp">
+    <ClCompile Include="..\Files\Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Checkmate-Repo\ChessProject\Board.cpp">
+    <ClCompile Include="..\Files\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Checkmate-Repo\ChessProject\Board.h">
+    <ClInclude Include="..\Files\Board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Checkmate-Repo\ChessProject\ChessPiece.h">
+    <ClInclude Include="..\Files\ChessPiece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Checkmate-Repo\ChessProject\King.h">
+    <ClInclude Include="..\Files\King.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Checkmate-Repo\ChessProject\Pipe.h">
+    <ClInclude Include="..\Files\Pipe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Checkmate-Repo\ChessProject\Rook.h">
+    <ClInclude Include="..\Files\Rook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Checkmate-Repo\ChessProject\stdafx.h">
+    <ClInclude Include="..\Files\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Checkmate-Repo\ChessProject\targetver.h">
+    <ClInclude Include="..\Files\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
