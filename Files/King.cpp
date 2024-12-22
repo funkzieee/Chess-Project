@@ -52,7 +52,7 @@ int King::isValidMove(const string& coords, Board* board, bool turn)
     board->_chessBoard[dstY][dstX] = board->_chessBoard[srcY][srcX];
     board->_chessBoard[srcY][srcX] = nullptr;
 
-    inCheck = isKingInCheck(board, dstX, dstY, turn);
+    inCheck = isKingInCheck(board, dstX, dstY, !turn);
 
     // Restore the board
     board->_chessBoard[srcY][srcX] = board->_chessBoard[dstY][dstX];
@@ -64,6 +64,6 @@ int King::isValidMove(const string& coords, Board* board, bool turn)
     }
 
 	string kingCoords = coords.substr(2, 2);
-    board->updateKingCoords(kingCoords, turn);
+    board->updateKingCoords(kingCoords, !turn);
 	return 0; // Move is valid
 }

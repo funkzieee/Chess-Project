@@ -87,6 +87,7 @@ output: true (for king in check), false (for king not in check)
 */
 bool ChessPiece::isKingInCheck(Board* board, int kingX, int kingY, bool turn) const
 {
+    int checkValid = 0;
     string coords = "";
     int i = 0, j = 0;
     // Check if any opponent piece can attack the king
@@ -103,8 +104,9 @@ bool ChessPiece::isKingInCheck(Board* board, int kingX, int kingY, bool turn) co
                 coords += char('a' + kingX);
                 coords += char('1' + kingY);
 
+                checkValid = board->_chessBoard[i][j]->isValidMove(coords, board, turn);
                 // Check if the other team piece can move to the king position
-                if (board->_chessBoard[i][j]->isValidMove(coords, board, turn) == 0)
+                if (checkValid == 0 || checkValid == 1 || checkValid == 8)
                 {
                     return true; // means king is in check
                 }
