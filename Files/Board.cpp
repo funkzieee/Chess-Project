@@ -2,6 +2,8 @@
 #include "Rook.h"
 #include "King.h"
 #include "Bishop.h"
+#include "Knight.h"
+#include "Pawn.h"
 #include <cmath>
 #include <string>
 
@@ -29,17 +31,28 @@ Board::Board()
             this->_chessBoard[i][j] = nullptr;
         }
     }
+
+	for (i = 0; i < BOARDSIZE; ++i)
+	{
+        this->_chessBoard[1][i] = new Pawn(wPAWN, "e8");
+        this->_chessBoard[6][i] = new Pawn(bPAWN, "e1");
+	}
+
     // White side
 	this->_chessBoard[0][0] = new Rook(wROOK, "e8");
     this->_chessBoard[0][7] = new Rook(wROOK, "e8");
-    this->_chessBoard[0][2] = new Bishop(wBISHOP, "e8");
-    this->_chessBoard[0][5] = new Bishop(wBISHOP, "e8");
+    this->_chessBoard[0][1] = new Knight(wKNIGHT, "e8");
+    this->_chessBoard[0][6] = new Knight(wKNIGHT, "e8");
+    //this->_chessBoard[0][2] = new Bishop(wBISHOP, "e8");
+    //this->_chessBoard[0][5] = new Bishop(wBISHOP, "e8");
     this->_chessBoard[0][4] = new King(wKING, "e8");
     //Black side
     this->_chessBoard[7][0] = new Rook(bROOK, "e1");
     this->_chessBoard[7][7] = new Rook(bROOK, "e1");
-    this->_chessBoard[7][2] = new Bishop(bBISHOP, "e1");
-    this->_chessBoard[7][5] = new Bishop(bBISHOP, "e1");
+    this->_chessBoard[7][1] = new Knight(bKNIGHT, "e1");
+    this->_chessBoard[7][6] = new Knight(bKNIGHT, "e1");
+    //this->_chessBoard[7][2] = new Bishop(bBISHOP, "e1");
+    //this->_chessBoard[7][5] = new Bishop(bBISHOP, "e1");
     this->_chessBoard[7][4] = new King(bKING, "e1");
 }
 

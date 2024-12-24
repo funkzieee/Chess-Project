@@ -74,21 +74,9 @@ int Rook::isValidMove(const string& coords, Board* board, bool turn)
         }
     }
 
-	ChessPiece* temp = board->_chessBoard[dstY][dstX];
-    board->_chessBoard[dstY][dstX] = board->_chessBoard[srcY][srcX];
-    board->_chessBoard[srcY][srcX] = nullptr;
-
-	string kingCoords = this->getKingCoords();
-    int coordX = kingCoords[0] - 'a';
-    int coordY = kingCoords[1] - '1';
-
-    isCheck = isKingInCheck(board, coordX, coordY, turn);
-     
-    // Restore the board
-    board->_chessBoard[srcY][srcX] = board->_chessBoard[dstY][dstX];
-    board->_chessBoard[dstY][dstX] = temp;
-
-    if (isCheck)
+    string kingCoords = this->getKingCoords();
+    // check if the piece made a check
+    if (checkIfPieceCheck(board, coords, kingCoords, turn))
     {
         return 1;
     }

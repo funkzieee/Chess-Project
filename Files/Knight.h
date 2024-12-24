@@ -3,10 +3,10 @@
 #include "Board.h"
 #include <string>
 
-class Rook : public ChessPiece
+class Knight : public ChessPiece
 {
 public:
-    Rook(char symbol, std::string kingCoords);
-    //virtual ~Rook();
+    Knight(char symbol, std::string kingCoords);
+    //virtual ~Knight();
     int isValidMove(const std::string& coords, Board* board, bool turn) override;
 };

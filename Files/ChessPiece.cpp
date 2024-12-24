@@ -115,3 +115,31 @@ bool ChessPiece::isKingInCheck(Board* board, int kingX, int kingY, bool turn) co
     }
     return false; // means king is not in check
 }
+
+/*
+The function checks if the king is in check after a move of a piece
+input: board - 2d array, kingX - int, kingY - int, turn - bool
+output: true (for king in check), false (for king not in check)
+*/
+bool ChessPiece::checkIfPieceCheck(Board* board, const string& coords, const string& kingCoords, bool turn)
+{
+	int srcX = coords[0] - 'a', srcY = coords[1] - '1';
+	int dstX = coords[2] - 'a', dstY = coords[3] - '1';
+
+    int coordX = kingCoords[0] - 'a';
+    int coordY = kingCoords[1] - '1';
+
+	bool inCheck = false;
+    ChessPiece* temp = board->_chessBoard[dstY][dstX];
+
+	// Move the piece
+    board->_chessBoard[dstY][dstX] = board->_chessBoard[srcY][srcX];
+	board->_chessBoard[srcY][srcX] = nullptr; // Set the source to nullptr
+	// Check if the king is in check after the move
+    inCheck = isKingInCheck(board, coordX, coordY, turn);
+
+    // Restore the board
+    board->_chessBoard[srcY][srcX] = board->_chessBoard[dstY][dstX];
+    board->_chessBoard[dstY][dstX] = temp;
+	return inCheck; // return in check (true/false)
+}

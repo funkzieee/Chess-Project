@@ -26,4 +26,5 @@ public:
 	virtual int isValidMove(const std::string& coords, Board* board, bool turn) = 0;
 	bool checkIfSameDestination(int srcX, int srcY, int dstX, int dstY) const;
 	bool isKingInCheck(Board* board, int dstX, int dstY, bool turn) const;
+	bool checkIfPieceCheck(Board* board, const std::string& coords, const std::string& kingCoords, bool turn);
 };
