@@ -133,6 +133,7 @@
     <ClCompile Include="..\Files\King.cpp" />
     <ClCompile Include="..\Files\Knight.cpp" />
     <ClCompile Include="..\Files\Pawn.cpp" />
+    <ClCompile Include="..\Files\Queen.cpp" />
     <ClCompile Include="..\Files\Rook.cpp" />
     <ClCompile Include="..\Files\Source.cpp" />
     <ClCompile Include="..\Files\stdafx.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="..\Files\Knight.h" />
     <ClInclude Include="..\Files\Pawn.h" />
     <ClInclude Include="..\Files\Pipe.h" />
+    <ClInclude Include="..\Files\Queen.h" />
     <ClInclude Include="..\Files\Rook.h" />
     <ClInclude Include="..\Files\stdafx.h" />
     <ClInclude Include="..\Files\targetver.h" />

@@ -1,33 +1,33 @@
-#include "Bishop.h"
+#include "Queen.h"
 #include <iostream>
 #include <cmath>
 
 using std::string;
 
-Bishop::Bishop(char symbol, std::string kingCoords)
+Queen::Queen(char symbol, std::string kingCoords)
 	: ChessPiece(symbol, kingCoords)
 {
 }
 
-int Bishop::isValidMove(const std::string& coords, Board* board, bool turn)
+int Queen::isValidMove(const std::string& coords, Board* board, bool turn)
 {
     bool isCheck = false;
     // Getting the indexes to check on the board
     int srcX = coords[0] - 'a', srcY = coords[1] - '1';
     int dstX = coords[2] - 'a', dstY = coords[3] - '1';
 
+
     if (turn == isupper(board->_chessBoard[srcY][srcX]->getSymbol()))
     {
         return 6;
     }
-
-    // Check if the move violates Bishop movement rules (code 6)
-    if (abs(dstX - srcX) != abs(dstY - srcY))
+    if (srcX != dstX && srcY != dstY)
     {
-        return 6;
+        if (abs(dstX - srcX) != abs(dstY - srcY))
+        {
+            return 6;
+        }
     }
-
-    // Check if source and destination are the same (code 7)
     if (checkIfSameDestination(srcX, srcY, dstX, dstY))
     {
         return 7;
@@ -39,6 +39,29 @@ int Bishop::isValidMove(const std::string& coords, Board* board, bool turn)
         return 3;
     }
 
+    // Check path is clear
+    if (srcX == dstX) // Vertical move
+    {
+        int step = (dstY > srcY) ? 1 : -1; // here we checking the direction of the move
+        for (int i = srcY + step; i != dstY; i += step)
+        {
+            if (board->_chessBoard[i][srcX] != nullptr) // Check if the current block is blocked
+            {
+                return 6; // if so returing 6
+            }
+        }
+    }
+    else if (srcY == dstY) // Horizontal move
+    {
+        int step = (dstX > srcX) ? 1 : -1; // here we checking the direction of the move
+        for (int i = srcX + step; i != dstX; i += step)
+        {
+            if (board->_chessBoard[srcY][i] != nullptr) // Check if the current block is blocked
+            {
+                return 6; // if so returing 6
+            }
+        }
+    }
     if (abs(dstX - srcX) == abs(dstY - srcY))
     { // Check if the move is diagonal
         int stepX = (dstX > srcX) ? 1 : -1; // Direction for X
@@ -59,8 +82,6 @@ int Bishop::isValidMove(const std::string& coords, Board* board, bool turn)
         }
     }
 
-    
-
     ChessPiece* temp = board->_chessBoard[dstY][dstX];
     board->_chessBoard[dstY][dstX] = board->_chessBoard[srcY][srcX];
     board->_chessBoard[srcY][srcX] = nullptr;
@@ -79,6 +100,5 @@ int Bishop::isValidMove(const std::string& coords, Board* board, bool turn)
     {
         return 1;
     }
-
 	return 0;
 }
