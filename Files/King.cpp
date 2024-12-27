@@ -15,7 +15,7 @@ King::King(char symbol, string kingCoords)
 
 /*
 The function checks if the king move is valid based on the coords it gets
-input: coords - string, board - 2d array
+input: coords - string, board - 2d array, turn - bool
 output: a number based on the move
 */
 int King::isValidMove(const string& coords, Board* board, bool turn)

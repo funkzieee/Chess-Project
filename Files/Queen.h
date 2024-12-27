@@ -7,6 +7,6 @@ class Queen : public ChessPiece
 {
 public:
     Queen(char symbol, std::string kingCoords);
-    //virtual ~Bishop();
+    //virtual ~Queen();
     int isValidMove(const std::string& coords, Board* board, bool turn) override;
 };

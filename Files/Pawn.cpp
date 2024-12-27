@@ -35,7 +35,7 @@ void Pawn::setFirst2Step()
 
 /*
 The function checks if the pawn move is valid based on the coords it gets
-input: coords - string, board - 2d array
+input: coords - string, board - 2d array, turn - bool
 output: a number based on the move
 */
 int Pawn::isValidMove(const string& coords, Board* board, bool turn)
@@ -55,6 +55,17 @@ int Pawn::isValidMove(const string& coords, Board* board, bool turn)
     if (checkIfSameDestination(srcX, srcY, dstX, dstY))
     {
         return 7;
+    }
+
+    if ((srcY == dstY) || (this->isFirst2Step() && abs(dstY - srcY) >= 2 || abs(dstX - srcX) >= 2))
+    {
+        return 6;
+    }
+
+    // check backwards move
+    if ((turn && dstY >= srcY) || (!turn && dstY <= srcY))
+    {
+        return 6;
     }
 
     // Check if the move is a valid capture move (diagonal move with a piece to capture)
@@ -92,7 +103,6 @@ int Pawn::isValidMove(const string& coords, Board* board, bool turn)
     {
         return 1;
     }
-    
 
     if (!this->isFirst2Step())
     {

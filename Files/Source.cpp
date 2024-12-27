@@ -20,7 +20,7 @@ void main()
 
 	Pipe p;
 	bool isConnect = p.connect();
-	
+
 	string ans;
 	while (!isConnect)
 	{
@@ -34,28 +34,30 @@ void main()
 			Sleep(5000);
 			isConnect = p.connect();
 		}
-		else 
+		else
 		{
 			p.close();
 			return;
 		}
 	}
-	
+
 
 	char msgToGraphics[1024];
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
 	Board* gameBoard = new Board(); // creating a new board
 	strcpy_s(msgToGraphics, "rnbqkbnrpppppppp################################PPPPPPPPRNBQKBNR1"); // just example...
-	
+
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
 
-	
+
 	while (msgFromGraphics != "quit")
 	{
+		int kingX = 0;
+		int kingY = 0;
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4 (move e2 to e4)
 
@@ -67,18 +69,40 @@ void main()
 
 		/******* JUST FOR EREZ DEBUGGING ******/
 		// MAKE LATER A FUNCTION THAT CHECK IF THE SRC INDEXES ARE EMPTY
-		int r = gameBoard->_chessBoard[srcY][srcX]->isValidMove(msgFromGraphics, gameBoard, gameBoard->getPlayerTurn());
+		int r = 6;
+		if (gameBoard->_chessBoard[srcY][srcX] != nullptr)
+		{
+			r = gameBoard->_chessBoard[srcY][srcX]->isValidMove(msgFromGraphics, gameBoard, gameBoard->getPlayerTurn());
+
+			string kingCoordsOpp = gameBoard->_chessBoard[srcY][srcX]->getKingCoords();
+			kingX = kingCoordsOpp[0] - 'a';
+			kingY = kingCoordsOpp[1] - '1';
+			// getting the opposite team king coords
+			string kingCoords = gameBoard->_chessBoard[kingY][kingX]->getKingCoords();
+			kingX = kingCoords[0] - 'a';
+			kingY = kingCoords[1] - '1';
+		}
+
 		if (r == 0 || r == 1 || r == 8)
 		{
 			gameBoard->move(msgFromGraphics);
-			gameBoard->changeTurn();
+			if (gameBoard->_chessBoard[srcY][srcX]->isKingInCheck(gameBoard, kingX, kingY, !gameBoard->getPlayerTurn()))
+			{
+				string undoMoveString = msgFromGraphics.substr(2, 2) + msgFromGraphics.substr(0, 2);
+				gameBoard->move(undoMoveString);
+				r = 4;
+			}
+			else
+			{
+				gameBoard->changeTurn();
+			}
 		}
 		msgToGraphics[0] = (char)(r + '0');
 		msgToGraphics[1] = 0;
 		/******* JUST FOR EREZ DEBUGGING ******/
 
 		// return result to graphics		
-		p.sendMessageToGraphics(msgToGraphics);   
+		p.sendMessageToGraphics(msgToGraphics);
 
 		// get message from graphics
 		msgFromGraphics = p.getMessageFromGraphics();

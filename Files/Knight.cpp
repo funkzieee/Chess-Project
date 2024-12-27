@@ -14,7 +14,7 @@ Knight::Knight(char symbol, string kingCoords)
 
 /*
 The function checks if the knight move is valid based on the coords it gets
-input: coords - string, board - 2d array
+input: coords - string, board - 2d array, turn - bool
 output: a number based on the move
 */
 int Knight::isValidMove(const string& coords, Board* board, bool turn)

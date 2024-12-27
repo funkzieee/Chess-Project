@@ -15,7 +15,7 @@ Rook::Rook(char symbol, string kingCoords)
 
 /*
 The function checks if the rook move is valid based on the coords it gets
-input: coords - string, board - ChessPiece* [][] (2d array)
+input: coords - string, board - 2d array, turn - bool
 output: true (for valid move), false (for invalid move)
 */
 int Rook::isValidMove(const string& coords, Board* board, bool turn)

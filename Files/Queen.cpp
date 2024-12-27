@@ -4,11 +4,21 @@
 
 using std::string;
 
+/*
+The constructor for the queen piece
+input: symbol - char, kingCoords - string
+output: none
+*/
 Queen::Queen(char symbol, std::string kingCoords)
 	: ChessPiece(symbol, kingCoords)
 {
 }
 
+/*
+The function checks if the queen move is valid based on the coords it gets
+input: coords - string, board - 2d array, turn - bool
+output: a number based on the move
+*/
 int Queen::isValidMove(const std::string& coords, Board* board, bool turn)
 {
     bool isCheck = false;
@@ -82,23 +92,12 @@ int Queen::isValidMove(const std::string& coords, Board* board, bool turn)
         }
     }
 
-    ChessPiece* temp = board->_chessBoard[dstY][dstX];
-    board->_chessBoard[dstY][dstX] = board->_chessBoard[srcY][srcX];
-    board->_chessBoard[srcY][srcX] = nullptr;
-
     string kingCoords = this->getKingCoords();
-    int coordX = kingCoords[0] - 'a';
-    int coordY = kingCoords[1] - '1';
-
-    isCheck = isKingInCheck(board, coordX, coordY, turn);
-
-    // Restore the board
-    board->_chessBoard[srcY][srcX] = board->_chessBoard[dstY][dstX];
-    board->_chessBoard[dstY][dstX] = temp;
-
-    if (isCheck)
+    // check if the piece made a check
+    if (checkIfPieceCheck(board, coords, kingCoords, turn))
     {
         return 1;
     }
+
 	return 0;
 }
