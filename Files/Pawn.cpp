@@ -51,6 +51,11 @@ int Pawn::isValidMove(const string& coords, Board* board, bool turn)
         return 6;
     }
 
+    if (board->_chessBoard[dstY][dstX] != nullptr && isupper(board->_chessBoard[srcY][srcX]->getSymbol()) == isupper(board->_chessBoard[dstY][dstX]->getSymbol()))
+    {
+        return 3;
+    }
+
     // Check if source and destination are the same (code 7)
     if (checkIfSameDestination(srcX, srcY, dstX, dstY))
     {
